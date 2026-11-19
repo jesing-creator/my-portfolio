@@ -83,7 +83,7 @@ export default function Nav() {
         aria-controls="site-menu"
         aria-label={open ? 'Close menu' : 'Open menu'}
         onClick={() => setOpen((v) => !v)}
-        className="absolute right-[var(--gx)] top-[22px] grid size-[46px] place-items-center rounded-full border border-current/70 transition-colors duration-300 hover:bg-black/5"
+        className="absolute right-[var(--gx)] top-[22px] grid size-[46px] md:hidden place-items-center rounded-full border border-current/70 transition-colors duration-300 hover:bg-black/5"
       >
         <span aria-hidden className="relative block h-[9px] w-[15px]">
           <span className={`absolute left-0 h-px w-full bg-current transition-transform duration-300 ${open ? 'top-1 rotate-45' : 'top-0'}`} />
@@ -94,7 +94,7 @@ export default function Nav() {
       <div
         id="site-menu"
         hidden={!open}
-        className="absolute right-[max(1.5rem,2.4vw)] top-[78px] w-56 rounded-2xl bg-white/90 ring-1 ring-black/5 p-5 text-[#0a0e14] shadow-[0_20px_50px_-20px_rgb(20_40_80/0.35)] backdrop-blur-xl"
+        className="absolute right-[max(1.5rem,2.4vw)] top-[78px] w-56 md:hidden rounded-2xl bg-white/90 ring-1 ring-black/5 p-5 text-[#0a0e14] shadow-[0_20px_50px_-20px_rgb(20_40_80/0.35)] backdrop-blur-xl"
       >
         <ul className="space-y-3">
           {site.nav.map((l) => (
