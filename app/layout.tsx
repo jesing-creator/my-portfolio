@@ -11,7 +11,14 @@ import Cursor from '@/components/Cursor'
 import GlassLayer from '@/components/glass/GlassLayer'
 import { site } from '@/lib/site'
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'http://localhost:3000')
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: { default: `${site.name} (JC), design for a more connected world`, template: `%s, ${site.name}` },
   description: `${site.role}. ${site.intro.join(' ')}`,
 }
