@@ -330,7 +330,8 @@ void main() {
     col *= 1.0 - 0.55 * hair * (1.0 - uNight);
     float rimBand = smoothstep(0.66, 0.78, a1) * (1.0 - smoothstep(0.78, 0.90, a1));
     col += vec3(1.0) * 0.07 * rimBand;
-    col += vec3(0.88, 0.92, 0.34) * pow(a1, 4.0) * mix(0.6, 0.20, uNight);
+    // warm cream-yellow film at the rim (the reference reads creamy, not lime)
+    col += vec3(1.0, 0.96, 0.62) * pow(a1, 4.0) * mix(0.62, 0.20, uNight);
     // caustic crescent low on the side away from the key light
     float cau = pow(max(dot(n, normalize(vec3(0.5, -0.7, 0.3))), 0.0), 5.0) * smoothstep(0.2, 0.7, ndv);
     col += vec3(1.0, 0.98, 0.92) * 0.20 * cau;
@@ -350,7 +351,7 @@ void main() {
     col = mix(bg, halo, uNight);
     // ambient glow that hugs the glass, warm at the edge and cool further out
     float gl = exp(-md * 9.0);
-    col += (vec3(0.80, 0.90, 1.0) * gl * 0.035 + vec3(1.0, 0.95, 0.80) * exp(-md * 30.0) * 0.02) * uHalo.w;
+    col += (vec3(0.80, 0.90, 1.0) * gl * 0.035 + vec3(1.0, 0.96, 0.78) * exp(-md * 26.0) * 0.07) * uHalo.w;
     col += rings(uv, 1.0);
   }
 

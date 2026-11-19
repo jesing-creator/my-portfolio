@@ -18,13 +18,15 @@ type Ball = { x: number; y: number; z: number; vx: number; vy: number }
 const CLUSTER: [number, number, number, number][] = [
   // one cohesive cluster: four main spheres just kissing round a small core sphere, three small ones hugging the
   // outside. 0..3 are the four "ingredient" orbs, 4 is the core, 5..6 and 7 hug the cluster.
-  [-0.8, 1.45, 0.0, 0.95],
-  [1.0, 0.5, 0.05, 1.1],
-  [-1.15, -0.4, 0.0, 0.8],
-  [0.5, -1.45, 0.0, 0.9],
-  [-0.1, 0.1, 0.1, 0.4],
-  [1.95, 1.4, 0.1, 0.34],
-  [-1.95, 0.8, 0.1, 0.27],
+  // measured from the reference composition: the top-left and right spheres kiss, the core bubble sits in the
+  // notch under them, the two lower spheres float free, and the two small ones bud off the upper pair
+  [-0.78, 1.41, 0.0, 0.95],
+  [1.12, 0.6, 0.05, 1.1],
+  [-1.21, -0.49, 0.0, 0.8],
+  [0.5, -1.82, 0.0, 0.92],
+  [-0.05, 0.25, 0.1, 0.4],
+  [2.18, 1.3, 0.1, 0.28],
+  [-1.88, 0.95, 0.1, 0.3],
 ]
 
 // x, y as fractions of half width / half height, then radius in world units
@@ -121,8 +123,8 @@ export function stepSim(sim: Sim, dt: number, t: number, W: number, H: number, o
   sim.py += (motion.pointer.y - sim.py) * ease(dt, 4.5)
 
   // Where the cluster lives in each state (world units).
-  const heroPos = tall ? [0, HALF_H * 0.5] : [halfW * 0.36, HALF_H * 0.2]
-  const heroScale = tall ? 0.4 : 0.66
+  const heroPos = tall ? [0, HALF_H * 0.5] : [halfW * 0.14, HALF_H * 0.14]
+  const heroScale = tall ? 0.4 : 0.6
   const boardPos = tall ? [halfW * 0.7, HALF_H * 0.55] : [halfW * 0.88, HALF_H * 0.3]
   const boardScale = tall ? 0.34 : 0.5
   const parkPos = tall ? [halfW * 0.5, -HALF_H * 0.7] : [halfW * 0.7, -HALF_H * 0.45]

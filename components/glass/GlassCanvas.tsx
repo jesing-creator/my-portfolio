@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { frameSubs, motion } from '@/lib/motion'
@@ -32,6 +32,15 @@ function Liquid() {
     }),
     [],
   )
+
+  // Build the material here, around this exact uniforms object. Declaring <shaderMaterial uniforms={...}> in JSX
+  // left the material holding a shallow copy, so every scalar (uK, uTime, uDrift, uVel) froze at its initial
+  // value: the glass melted into one blob (uK stuck at 0.8) and the clouds and shimmer stood still.
+  const material = useMemo(
+    () => new THREE.ShaderMaterial({ vertexShader: VERT, fragmentShader: FRAG, uniforms, depthTest: false, depthWrite: false }),
+    [uniforms],
+  )
+  useEffect(() => () => material.dispose(), [material])
 
   useFrame((state, delta) => {
     const dt = Math.min(delta, 1 / 30)
@@ -86,15 +95,8 @@ function Liquid() {
   })
 
   return (
-    <mesh frustumCulled={false}>
+    <mesh frustumCulled={false} material={material}>
       <planeGeometry args={[2, 2]} />
-      <shaderMaterial
-        vertexShader={VERT}
-        fragmentShader={FRAG}
-        uniforms={uniforms}
-        depthTest={false}
-        depthWrite={false}
-      />
     </mesh>
   )
 }
