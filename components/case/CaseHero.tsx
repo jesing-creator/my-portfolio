@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
+import CoverVideo from './CoverVideo'
 import { IMG } from '@/lib/images'
 import { type Project } from '@/lib/projects'
 
@@ -38,6 +39,9 @@ export default function CaseHero({ p }: { p: Project }) {
       <div
         className={`mt-12 overflow-hidden rounded-[22px] shadow-[0_30px_80px_-44px_rgb(10_14_20/0.35)] md:mt-16 md:rounded-[32px] ${contain ? 'bg-black' : 'bg-neutral-100'}`}
       >
+        {p.heroVideo ? (
+          <CoverVideo src={p.heroVideo.src} poster={p.heroVideo.poster} label={`${p.name} cover film`} />
+        ) : (
         <img
           src={img.src}
           width={img.w}
@@ -47,6 +51,7 @@ export default function CaseHero({ p }: { p: Project }) {
           decoding="async"
           className={contain ? 'mx-auto block h-[min(68svh,46rem)] w-full object-contain' : 'block h-[min(68svh,46rem)] w-full object-cover'}
         />
+        )}
       </div>
     </header>
   )

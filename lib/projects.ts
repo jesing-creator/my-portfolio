@@ -45,6 +45,8 @@ export type Project = {
   heroAlt: string
   /** "contain" for cut-outs that sit on black, "cover" for full-bleed photos. */
   heroFit: 'contain' | 'cover'
+  /** Optional cover film that plays (muted, looping) in place of the still hero. */
+  heroVideo?: { src: string; poster: string }
   facts: { label: string; value: string }[]
   /** The "Contribution" line from the PDF. */
   contribution: string
@@ -77,6 +79,7 @@ export const projects: Project[] = [
     hero: 'social-hive/hero',
     heroAlt: 'Two hands pressed together in a high five, each wearing a yellow Hive Sensor wristband.',
     heroFit: 'contain',
+    heroVideo: { src: '/work/social-hive/cover.mp4', poster: '/work/social-hive/cover-poster.jpg' },
     facts: [
       { label: 'Duration', value: 'Aug 2024 – May 2025' },
       { label: 'Type', value: 'Service & Interaction Design, graduation project' },
