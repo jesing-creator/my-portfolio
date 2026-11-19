@@ -69,9 +69,9 @@ export default function Nav() {
         </Link>
       )}
 
-      <nav aria-label="Primary" className="absolute left-[27%] top-[34px] hidden gap-x-10 md:flex">
+      <nav aria-label="Primary" className="absolute left-1/2 top-[34px] hidden -translate-x-1/2 gap-x-10 md:flex">
         {site.nav.map((l) => (
-          <NavLink key={l.label} h={l.href} onHome={onHome} className="hud hv-pill min-w-[5.5rem] !text-current opacity-70">
+          <NavLink key={l.label} h={l.href} onHome={onHome} className="hud hv-pill min-w-[5.5rem] text-center !text-current opacity-70">
             {l.label}
           </NavLink>
         ))}
