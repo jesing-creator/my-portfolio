@@ -638,3 +638,17 @@ html[data-nav='solid'] [data-site-nav]::before { opacity: 1; }
 @media (max-aspect-ratio: 9/10) and (max-height: 760px) {
   .w-panel > p:nth-of-type(2) { display: none; }
 }
+
+/* ---------- round 19: bigger project cards on desktop ---------- */
+@media (min-aspect-ratio: 9/10) {
+  .w-left { width: min(46rem, 48vw); }
+  .w-row { padding-block: clamp(1.1rem, 3svh, 2rem); }
+  .w-item { gap: clamp(1.2rem, 2.2vw, 2.2rem); }
+  .w-thumb { width: clamp(7rem, min(14vw, 22svh), 13rem); border-radius: 16px; }
+  .w-meta { gap: clamp(0.4rem, 1.1svh, 0.7rem); }
+  .w-year { font-size: clamp(12px, 0.95vw, 14px); }
+  .w-t { font-size: clamp(1.5rem, 2.5vw, 2.4rem); }
+  .w-desc { font-size: clamp(14px, 1.15vw, 17px); }
+  .w-h { font-size: clamp(1.05rem, 1.55vw, 1.5rem); }
+  .w-read { font-size: 15px; }
+}
